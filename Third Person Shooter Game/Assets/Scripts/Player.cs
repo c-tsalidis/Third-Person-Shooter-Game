@@ -48,6 +48,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         #region Public variables
 
+        public static Player Instance; // singleton
+        public float score;
+        public float health;
+
         #endregion
 
         #region Monobehabiour callback methods
@@ -79,6 +83,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         // Update is called once per frame
         void Update()
         {
+            health = this.gameObject.GetComponent<LivingEntity>().health;
             MovePlayer();
             CameraFollow();
             CheckGuns();
@@ -153,9 +158,12 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         private void Shoot()
         {
-            if(Input.GetButtonDown("Fire1"))
+            if(gameObject != null)
             {
-                equipedGun.GetComponent<Gun>().Shoot();
+                if(Input.GetButtonDown("Fire1"))
+                {
+                    equipedGun.GetComponent<Gun>().Shoot();
+                }
             }
         }
 

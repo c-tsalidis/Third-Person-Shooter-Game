@@ -65,6 +65,11 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             {
                 dieEffectPS.Play();
             }
+            float score = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().score;
+            score++;
+            PlayerPrefs.GetFloat("SurvivalMode_Player_Score");
+            float highScore = PlayerPrefs.GetFloat("SurvivalMode_Player_HighScore");
+            if(score > highScore) PlayerPrefs.SetFloat("SurvivalMode_Player_HighScore", score);
             yield return new WaitForSeconds(1.5f);
             Destroy(this.gameObject);
         }

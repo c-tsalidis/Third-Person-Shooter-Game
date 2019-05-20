@@ -240,10 +240,11 @@ MonoBehaviour:
   player: {fileID: 5584945214908572823}
   gunEnd: {fileID: 5584945214860393670}
   gunDamage: 1
-  fireRate: 0.25
+  msBetweenShots: 2000
   weaponRange: 50
   hitForce: 100
   isEquiped: 0
+  nextShotTime: 0
 --- !u!1 &3394543723683326376
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,7 +869,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -900,7 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visuals: {fileID: 5584945215664719646}
   dieEffectPS: {fileID: 3132826200647660035}
-  health: 1
+  health: 3
   isDead: 0
 --- !u!114 &5584945214908572818
 MonoBehaviour:
@@ -916,6 +917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   minDistanceToTarget: 5
+  gun: {fileID: 675695950703236879}
+  nextShotTime: 2
 --- !u!195 &1697183291439982800
 NavMeshAgent:
   m_ObjectHideFlags: 0

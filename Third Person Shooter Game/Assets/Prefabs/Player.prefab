@@ -270,10 +270,11 @@ MonoBehaviour:
   player: {fileID: 7105098689798699106}
   gunEnd: {fileID: 7105098689721049139}
   gunDamage: 1
-  fireRate: 0.25
+  msBetweenShots: 0
   weaponRange: 50
   hitForce: 100
   isEquiped: 0
+  nextShotTime: 0
 --- !u!1 &5005217293508373126
 GameObject:
   m_ObjectHideFlags: 0
