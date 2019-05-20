@@ -8,6 +8,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
     {
         #region Private non-serializefield variables
 
+        // private GameObject player;
 
         #endregion
 
@@ -24,6 +25,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         public float health = 10f;
         public bool isDead = false;
+        public AudioSource takeDamageSound;
 
         #endregion
 
@@ -32,7 +34,9 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         // Start is called before the first frame update
         void Start()
         {
+            // player = GameObject.FindGameObjectWithTag("Player");
             // dieEffectPS = this.gameObject.GetComponent<ParticleSystem>();
+            // audioSource[0] = GetComponents<AudioSource>();
         }
 
         // Update is called once per frame
@@ -41,6 +45,15 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             if(health <= 0f)
             {
                 isDead = true;
+                /*
+                if(player != null)
+                {
+                    if(this.gameObject.tag == "Enemy")
+                    {
+                        player.GetComponent<Player>().score++;
+                    }
+                }
+                 */
             }
             if(isDead == true)
             {
@@ -56,6 +69,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         public void TakeDamage(float damage)
         {
             health -= damage;
+            if(this.gameObject.transform.tag == "Player")
+            {
+                takeDamageSound.Play();
+            }
         }
 
         IEnumerator Die()
@@ -65,15 +82,16 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             {
                 dieEffectPS.Play();
             }
-            float score = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().score;
-            score++;
-            PlayerPrefs.GetFloat("SurvivalMode_Player_Score");
-            float highScore = PlayerPrefs.GetFloat("SurvivalMode_Player_HighScore");
-            if(score > highScore) PlayerPrefs.SetFloat("SurvivalMode_Player_HighScore", score);
-            yield return new WaitForSeconds(1.5f);
-            Destroy(this.gameObject);
+            if(GameObject.FindGameObjectWithTag("Player") != null)
+            {
+                if(this.gameObject.transform.tag == "Player")
+                {
+                    Debug.Log("Game Over!");
+                }
+                yield return new WaitForSeconds(1.5f);
+                Destroy(this.gameObject);
+            }
         }
-
 
         #endregion
     }

@@ -26,6 +26,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         [SerializeField]
         private GameObject gun;
         
+        private AudioSource spawningInSound;
 
         #endregion
 
@@ -44,7 +45,12 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         {
             livingEntity = this.gameObject.GetComponent<LivingEntity>();
             agent = this.gameObject.GetComponent<NavMeshAgent>();
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+            spawningInSound = this.gameObject.GetComponent<AudioSource>();
+            // spawningInSound.Play();
+            if(GameObject.FindGameObjectWithTag("Player") != null)
+            {
+                target = GameObject.FindGameObjectWithTag("Player").transform;
+            }
             // StartCoroutine(UpdatePath());
             // agent.SetDestination(target.position);
             StartCoroutine(ShootingTime());

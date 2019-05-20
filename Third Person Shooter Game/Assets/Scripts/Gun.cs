@@ -87,6 +87,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             {
                 nextShotTime = Time.time + msBetweenShots / 1000;
                 Debug.Log("Shot");
+                if(gunAudio != null)
+                {
+                    gunAudio.Play();
+                }
                 StartCoroutine(ShotEffect());
                 // ray
                 lineOrigin = player.transform.position;
@@ -119,10 +123,6 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         IEnumerator ShotEffect()
         {
             laserLine.enabled = true;
-            if(gunAudio != null)
-            {
-                gunAudio.Play();
-            }
             yield return shotDuration;
             laserLine.enabled = false;
         }

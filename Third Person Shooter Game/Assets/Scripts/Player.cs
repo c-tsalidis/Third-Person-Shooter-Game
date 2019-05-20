@@ -49,7 +49,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         #region Public variables
 
         public static Player Instance; // singleton
-        public float score;
+        public float score; // the score of the player is the time he stays alive
         public float health;
 
         #endregion
@@ -84,6 +84,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         void Update()
         {
             health = this.gameObject.GetComponent<LivingEntity>().health;
+            if(health > 0f)
+            {
+                score = Mathf.Floor(Time.time * 10);
+            }
             MovePlayer();
             CameraFollow();
             CheckGuns();
