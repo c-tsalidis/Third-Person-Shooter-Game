@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1351886136f4f924b92f7ae75e9dea5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msBetweenWaves: 3
+  msBetweenEnemyWaves: 3
+  msBetweenHealthPowerUpWaves: 3
   enemy: {fileID: 5584945214908572823, guid: dbeee5e2b2c40134d8d7099e47173e36, type: 3}
-  spawnPointsGameObject: {fileID: 0}
+  enemySpawnPointsGameObject: {fileID: 0}
+  healthPowerUpsSpawnPointsGameObject: {fileID: 0}

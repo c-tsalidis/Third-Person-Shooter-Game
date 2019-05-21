@@ -51,6 +51,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 }
                 if(player.GetComponent<LivingEntity>().isDead == true)
                 {
+                    // Debug.Log("Game Over!");
                     gameOverPanel.SetActive(true);
                 }
             }

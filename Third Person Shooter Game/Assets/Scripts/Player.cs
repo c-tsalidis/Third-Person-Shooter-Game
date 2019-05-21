@@ -43,6 +43,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         [SerializeField]
         private GameObject [] guns;
+
+        [Space]
+        [SerializeField]
+        private GameObject takeDamagePanel;
         
         #endregion
 
@@ -86,7 +90,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             health = this.gameObject.GetComponent<LivingEntity>().health;
             if(health > 0f)
             {
-                score = Mathf.Floor(Time.time * 10);
+                // score = Mathf.Floor(Time.time * 10);
             }
             MovePlayer();
             CameraFollow();
@@ -169,6 +173,22 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                     equipedGun.GetComponent<Gun>().Shoot();
                 }
             }
+        }
+
+        public void ShowTakingDamagePanel(Vector3 hitPoint)
+        {
+            if(takeDamagePanel == null)
+            {
+                Debug.LogError("Player doesn't have the takeDamagePanel gameobject attached to it");
+                return;
+            }
+            Vector3 uiPos = Camera.main.WorldToScreenPoint(hitPoint);
+            GameObject newTakeDamagePanel = Instantiate(takeDamagePanel, takeDamagePanel.transform.position, Quaternion.identity); 
+        }
+
+        public void IncreaseHealth(float addedHealth)
+        {
+            health += addedHealth;
         }
 
         #endregion

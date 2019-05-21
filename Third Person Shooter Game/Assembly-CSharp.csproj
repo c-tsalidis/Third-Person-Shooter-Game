@@ -55,12 +55,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DamagePanel.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnvironmentObject.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\LivingEntity.cs" />
+     <Compile Include="Assets\Scripts\ParticleSystemDieEffect.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PowerUp.cs" />
      <Compile Include="Assets\Scripts\ScriptsTemplate.cs" />
      <Compile Include="Assets\Scripts\UIManagerSurvivalMode.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

@@ -35,6 +35,8 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private float weaponRange = 1000f;
         [SerializeField]
         private float hitForce = 100f;
+        [SerializeField]
+        private ParticleSystem particleSystem;
 
         
         #endregion
@@ -64,6 +66,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             rayOrigin = player.transform.position;
             // Draw a line in the Scene View  from the point lineOrigin in the direction of fpsCam.transform.forward * weaponRange, using the color green
             Debug.DrawRay(lineOrigin, player.transform.forward * weaponRange, Color.green);
+            /*
             if(Physics.Raycast(rayOrigin, player.transform.forward, out hit, weaponRange))
             {
                 if(hit.rigidbody != null)
@@ -74,6 +77,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                     }
                 }
             }
+             */
         }
 
 
@@ -93,6 +97,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 }
                 StartCoroutine(ShotEffect());
                 // ray
+                if(lineOrigin == null)
+                {
+                    return;
+                }
                 lineOrigin = player.transform.position;
                 rayOrigin = player.transform.position;
                 laserLine.SetPosition(0, gunEnd.position);
@@ -104,7 +112,14 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                     LivingEntity LivingEntity = hit.collider.GetComponent<LivingEntity>();
                     if(LivingEntity != null)
                     {
-                        LivingEntity.TakeDamage(gunDamage);
+                        if(LivingEntity.tag == "Player")
+                        {
+                            LivingEntity.TakeDamage(gunDamage, hit.point);    
+                        }
+                        else
+                        {
+                            LivingEntity.TakeDamage(gunDamage);
+                        }
                     }
                     if(hit.rigidbody != null)
                     {
@@ -122,7 +137,12 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         IEnumerator ShotEffect()
         {
+        if(laserLine == null)
+            {
+                yield return new WaitForSeconds(0.0f);
+            }
             laserLine.enabled = true;
+            particleSystem.Play();
             yield return shotDuration;
             laserLine.enabled = false;
         }

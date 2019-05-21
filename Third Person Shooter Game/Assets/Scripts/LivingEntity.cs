@@ -25,6 +25,8 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         public float health = 10f;
         public bool isDead = false;
+
+        public WaitForSeconds dieTime = new WaitForSeconds(1.5f);
         public AudioSource takeDamageSound;
 
         #endregion
@@ -45,19 +47,22 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             if(health <= 0f)
             {
                 isDead = true;
-                /*
+            }
+            if(isDead == true)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
                 if(player != null)
                 {
                     if(this.gameObject.tag == "Enemy")
                     {
+                        // the reason the score is being added by more than just one is because
+                        //  the gameobject is dead until it is destroyed in the IEnumerator
                         player.GetComponent<Player>().score++;
                     }
                 }
-                 */
-            }
-            if(isDead == true)
-            {
-                StartCoroutine(Die());
+                // StartCoroutine(Die());
+                // StartCoroutine(Die());
+                Die();
             }
         }
 
@@ -66,32 +71,40 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         #region Custom methods
 
 
+        // TakeDamage for all LivingEntities except Player
         public void TakeDamage(float damage)
         {
             health -= damage;
-            if(this.gameObject.transform.tag == "Player")
-            {
-                takeDamageSound.Play();
-            }
         }
 
-        IEnumerator Die()
+        // TakeDamage for Player
+        public void TakeDamage(float damage, Vector3 hitPoint)
+        {
+            health -= damage;
+            this.gameObject.GetComponent<Player>().ShowTakingDamagePanel(hitPoint);
+            takeDamageSound.Play();
+        }
+
+        // IEnumerator Die()
+        private void Die()
         {
             visuals.SetActive(false);
+            gameObject.GetComponent<Collider>().enabled = false;
             if(dieEffectPS != null)
             {
-                dieEffectPS.Play();
+                ParticleSystem newDieEffectPS = Instantiate(dieEffectPS, dieEffectPS.transform.position, Quaternion.identity) as ParticleSystem;
+                newDieEffectPS.Play();
             }
-            if(GameObject.FindGameObjectWithTag("Player") != null)
-            {
-                if(this.gameObject.transform.tag == "Player")
-                {
-                    Debug.Log("Game Over!");
-                }
-                yield return new WaitForSeconds(1.5f);
-                Destroy(this.gameObject);
-            }
+            // yield return dieTime;
+            Destroy(this.gameObject);
         }
+
+
+        public void IncreaseHealth(float addedHealth)
+        {
+            health += addedHealth;
+        }
+
 
         #endregion
     }

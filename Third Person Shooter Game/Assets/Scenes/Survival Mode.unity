@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 8553239079167692483, guid: b71a4a90140c6b4478f7bae81e923e36,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8553239079167692483, guid: b71a4a90140c6b4478f7bae81e923e36,
         type: 3}
@@ -264,11 +264,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
         type: 3}
-      propertyPath: spawnPointsGameObject
+      propertyPath: enemySpawnPointsGameObject
       value: 
       objectReference: {fileID: 2143430006}
+    - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: healthPowerUpsSpawnPointsGameObject
+      value: 
+      objectReference: {fileID: 7159641588865724171}
+    - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: healthPowerUp
+      value: 
+      objectReference: {fileID: 2592701815509815029, guid: 48cf1ff640ad1154583e37c35debe31a,
+        type: 3}
+    - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: msBetweenHealthPowerUpWaves
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c608fe9cdd8cb498086a6c0beb4e7a, type: 3}
+--- !u!1001 &1567481179782647440
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7159641588865724171, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Power Ups Spawn Points
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329956302585622866, guid: 2a28ff47aab9b4b419fa4767097978bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a28ff47aab9b4b419fa4767097978bf, type: 3}
 --- !u!1001 &3077216712028022909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -352,7 +437,7 @@ PrefabInstance:
     - target: {fileID: 4478167872909496525, guid: 656887f4619965148ada27f2fb1d5f4c,
         type: 3}
       propertyPath: m_Name
-      value: Spawn Points
+      value: Enemy Spawn Points
       objectReference: {fileID: 0}
     - target: {fileID: 4478167872909496524, guid: 656887f4619965148ada27f2fb1d5f4c,
         type: 3}
@@ -411,6 +496,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 656887f4619965148ada27f2fb1d5f4c, type: 3}
+--- !u!1 &7159641588865724171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7159641588865724171, guid: 2a28ff47aab9b4b419fa4767097978bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1567481179782647440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7357074703395199428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -461,7 +552,7 @@ PrefabInstance:
     - target: {fileID: 7105098689798699115, guid: 7e6ed0e1fff0b364493dde48bf229558,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7105098689798699115, guid: 7e6ed0e1fff0b364493dde48bf229558,
         type: 3}
@@ -476,6 +567,32 @@ PrefabInstance:
     - target: {fileID: 7105098689798699115, guid: 7e6ed0e1fff0b364493dde48bf229558,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105098689798699107, guid: 7e6ed0e1fff0b364493dde48bf229558,
+        type: 3}
+      propertyPath: takeDamagePanel
+      value: 
+      objectReference: {fileID: 6170361725626686787, guid: 62cc0229117dc7941bff39043926b1d9,
+        type: 3}
+    - target: {fileID: 2772909411704359931, guid: 7e6ed0e1fff0b364493dde48bf229558,
+        type: 3}
+      propertyPath: weaponRange
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772909411704359931, guid: 7e6ed0e1fff0b364493dde48bf229558,
+        type: 3}
+      propertyPath: nextShotTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772909411704359931, guid: 7e6ed0e1fff0b364493dde48bf229558,
+        type: 3}
+      propertyPath: msBetweenShots
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663100878422908644, guid: 7e6ed0e1fff0b364493dde48bf229558,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
