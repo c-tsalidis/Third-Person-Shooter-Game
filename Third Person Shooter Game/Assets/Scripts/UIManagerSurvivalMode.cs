@@ -17,12 +17,16 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private TextMeshProUGUI healthText;
         [SerializeField]
         private TextMeshProUGUI scoreText;
+        [SerializeField]
+        private TextMeshProUGUI highScoreText;
 
         #endregion
 
         #region Public variables
 
         public GameObject gameOverPanel;
+        public TextMeshProUGUI levelText;
+        public GameManager gameManager;
 
         #endregion
 
@@ -43,18 +47,18 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 healthText.text = GameObject.FindGameObjectWithTag("Player").GetComponent<LivingEntity>().health.ToString();
                 float score = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().score;
                 scoreText.text = score.ToString();
-                float highScore = PlayerPrefs.GetFloat("SurvivalMode_Player_HighScore");
-                if(score > highScore)
-                {
-                    highScore = score;
-                    PlayerPrefs.SetFloat("SurvivalMode_Player_HighScore", highScore);
-                }
+                
                 if(player.GetComponent<LivingEntity>().isDead == true)
                 {
                     // Debug.Log("Game Over!");
                     gameOverPanel.SetActive(true);
                 }
             }
+            float level = gameManager.enemyCounter;
+            levelText.text = level.ToString();
+
+            float highScore = PlayerPrefs.GetFloat("SurvivalMode_Player_HighScore");
+            highScoreText.text = "Highscore: " + highScore.ToString("0");
         }
 
         #endregion

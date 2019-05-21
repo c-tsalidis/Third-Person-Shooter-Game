@@ -207,6 +207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6068382748206496242, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8005334119016867899, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -282,6 +287,21 @@ PrefabInstance:
         type: 3}
       propertyPath: msBetweenHealthPowerUpWaves
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: levelUpTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486420336997998198, guid: d1c608fe9cdd8cb498086a6c0beb4e7a,
+        type: 3}
+      propertyPath: msBetweenEnemyWaves
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c608fe9cdd8cb498086a6c0beb4e7a, type: 3}
@@ -423,6 +443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 965626842, guid: c867f2645edae064892168659c1d0623, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8486420336997998198}
+    - target: {fileID: 4979760263770786327, guid: c867f2645edae064892168659c1d0623,
+        type: 3}
+      propertyPath: gameManager
       value: 
       objectReference: {fileID: 8486420336997998198}
     m_RemovedComponents: []
@@ -567,32 +592,6 @@ PrefabInstance:
     - target: {fileID: 7105098689798699115, guid: 7e6ed0e1fff0b364493dde48bf229558,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105098689798699107, guid: 7e6ed0e1fff0b364493dde48bf229558,
-        type: 3}
-      propertyPath: takeDamagePanel
-      value: 
-      objectReference: {fileID: 6170361725626686787, guid: 62cc0229117dc7941bff39043926b1d9,
-        type: 3}
-    - target: {fileID: 2772909411704359931, guid: 7e6ed0e1fff0b364493dde48bf229558,
-        type: 3}
-      propertyPath: weaponRange
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2772909411704359931, guid: 7e6ed0e1fff0b364493dde48bf229558,
-        type: 3}
-      propertyPath: nextShotTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2772909411704359931, guid: 7e6ed0e1fff0b364493dde48bf229558,
-        type: 3}
-      propertyPath: msBetweenShots
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8663100878422908644, guid: 7e6ed0e1fff0b364493dde48bf229558,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

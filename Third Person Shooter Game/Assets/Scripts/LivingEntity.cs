@@ -51,6 +51,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             if(isDead == true)
             {
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
+                // GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
                 if(player != null)
                 {
                     if(this.gameObject.tag == "Enemy")
@@ -60,6 +61,12 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                         player.GetComponent<Player>().score++;
                     }
                 }
+                /*
+                if(gameManager != null)
+                {
+                    gameManager.GetComponent<GameManager>().enemyCounter++;
+                }
+                 */
                 // StartCoroutine(Die());
                 // StartCoroutine(Die());
                 Die();

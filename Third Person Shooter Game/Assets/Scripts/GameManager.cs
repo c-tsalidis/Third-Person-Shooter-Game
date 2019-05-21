@@ -14,8 +14,6 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private Transform [] healthPowerUpsSpawnPoints;
 
         // variables in charge of handling time
-        private float auxTime;
-        private int auxIndex = 0;
 
         #endregion
 
@@ -30,7 +28,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         [SerializeField]
         private GameObject healthPowerUp;
         [SerializeField]
-        private float [] levelTimes;
+        private float levelUpTime;
 
         #endregion
 
@@ -38,6 +36,9 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         public GameObject enemySpawnPointsGameObject;
         public GameObject healthPowerUpsSpawnPointsGameObject;
+        public int level = 1;
+        public int enemyCounter = 0;
+        public float auxTime = 0;
         
 
         #endregion
@@ -47,9 +48,14 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         // Start is called before the first frame update
         void Start()
         {
+
+            // increase the level over time
+            // InvokeRepeating("LevelUp", levelUpTime, levelUpTime);
+
+            player = GameObject.FindGameObjectWithTag("Player");
+
             // call the spawn function after a delay of msBetweenWaves, and then continuw to call after the same amount of time
             InvokeRepeating("SpawnEnemies", msBetweenEnemyWaves, msBetweenEnemyWaves);
-            player = GameObject.FindGameObjectWithTag("Player");
             if((enemySpawnPointsGameObject.transform.childCount > 0) != true)
             {
                 Debug.LogError("There are no spawning objects assigned to the spawning points GameObject");
@@ -62,7 +68,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
             // call the spawning health power ups
             InvokeRepeating("SpawnHealthPowerUps", msBetweenHealthPowerUpWaves, msBetweenHealthPowerUpWaves);
-            player = GameObject.FindGameObjectWithTag("Player");
+            // player = GameObject.FindGameObjectWithTag("Player");
             if((healthPowerUpsSpawnPointsGameObject.transform.childCount > 0) != true)
             {
                 Debug.LogError("There are no health power up spawning objects assigned to the health power up spawning points GameObject");
@@ -76,17 +82,41 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         private void Update()
         {
-            auxTime = Time.time;
-            auxIndex = 0;
-            if(auxTime > levelTimes[auxIndex] %% msBetweenEnemyWaves >= 1 )
+            // auxTime = Time.time;
+            // if(auxTime > (1 +(Time.time - auxTime)) && msBetweenEnemyWaves >= 0.25f )
+            // {
+                // msBetweenEnemyWaves -= 0.25f;
+            //     auxTime = 0;
+                // level = Mathf.RoundToInt(Time.time / 1000);;
+            // }
+
+            if(player == null)
             {
-                msBetweenEnemyWaves--;
+                return;
+            }
+
+            enemyCounter = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            if((player.GetComponent<Player>().score % 10) == 0 && msBetweenEnemyWaves >= 0.5f)
+            {
+                // LevelUp();
+                msBetweenEnemyWaves -= 0.25f;
+                level++;
             }
 
         }
 
 
         #endregion
+
+
+        #region Custom methods
+        
+        private void LevelUp()
+        {
+            level++;
+            msBetweenEnemyWaves -= 1000f;
+        }
+        
         private void SpawnEnemies()
         {
             if(player != null)
@@ -110,7 +140,6 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             Instantiate(healthPowerUp, healthPowerUpsSpawnPoints[spawnpointIndex].position, healthPowerUpsSpawnPoints[spawnpointIndex].rotation);
         }
 
-        #region Custom methods
 
         public void RestartLevel()
         {

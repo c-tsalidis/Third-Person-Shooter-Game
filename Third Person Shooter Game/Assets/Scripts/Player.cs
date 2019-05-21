@@ -92,6 +92,15 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             {
                 // score = Mathf.Floor(Time.time * 10);
             }
+
+            float highScore = PlayerPrefs.GetFloat("SurvivalMode_Player_HighScore");
+            if(score > highScore)
+            {
+                highScore = score;
+                PlayerPrefs.SetFloat("SurvivalMode_Player_HighScore", highScore);
+            }
+
+
             MovePlayer();
             CameraFollow();
             CheckGuns();
@@ -184,11 +193,6 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             }
             Vector3 uiPos = Camera.main.WorldToScreenPoint(hitPoint);
             GameObject newTakeDamagePanel = Instantiate(takeDamagePanel, takeDamagePanel.transform.position, Quaternion.identity); 
-        }
-
-        public void IncreaseHealth(float addedHealth)
-        {
-            health += addedHealth;
         }
 
         #endregion

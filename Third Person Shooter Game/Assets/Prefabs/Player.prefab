@@ -411,7 +411,8 @@ MonoBehaviour:
   cameraRotationOffset: {x: 0, y: 0, z: 0, w: 0}
   guns:
   - {fileID: 2772909411704359930}
-  takeDamagePanel: {fileID: 0}
+  takeDamagePanel: {fileID: 6170361725626686787, guid: 62cc0229117dc7941bff39043926b1d9,
+    type: 3}
   score: 0
   health: 0
 --- !u!114 &7105098689798699108
@@ -819,6 +820,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 7105098689798699106}
+    - target: {fileID: 2538958255956548913, guid: 2e1c38347b55eef4bbf1ae01a654024f,
+        type: 3}
+      propertyPath: msBetweenShots
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538958255956548913, guid: 2e1c38347b55eef4bbf1ae01a654024f,
+        type: 3}
+      propertyPath: weaponRange
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538958255956548913, guid: 2e1c38347b55eef4bbf1ae01a654024f,
+        type: 3}
+      propertyPath: nextShotTime
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e1c38347b55eef4bbf1ae01a654024f, type: 3}
 --- !u!1 &2772909411704359930 stripped
