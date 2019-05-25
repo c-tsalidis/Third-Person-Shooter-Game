@@ -47,7 +47,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2a71a6fbae066d94984434be9af9f85b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -148,7 +148,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e5fe6c18df8992e4db0a003fb44614ff, type: 2}
+  - {fileID: 2100000, guid: 1d27c52e50c2f27469fff87a00e8a7a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   gunDamage: 1
   msBetweenShots: 5000
   weaponRange: 50
-  hitForce: 100
+  hitForce: 50
   particleSystem: {fileID: 6883322690727375737}
   isEquiped: 0
   nextShotTime: 5

@@ -24,7 +24,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         [SerializeField]
         private GameObject player;
         [SerializeField]
-        private WaitForSeconds shotDuration = new WaitForSeconds(0.005f);
+        private WaitForSeconds shotDuration = new WaitForSeconds(0.10f);
         [SerializeField]
         private Transform gunEnd;
         [SerializeField]
@@ -137,7 +137,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         IEnumerator ShotEffect()
         {
-        if(laserLine == null)
+            if(laserLine == null)
             {
                 yield return new WaitForSeconds(0.0f);
             }
