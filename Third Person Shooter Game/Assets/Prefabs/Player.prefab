@@ -178,7 +178,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 597b103d31e1521499cc79d560388a49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -407,8 +407,11 @@ MonoBehaviour:
   rotateSpeed: 100
   jumpForce: 5
   cameraTarget: {fileID: 461567325}
-  cameraPositionOffset: {x: 0, y: 0, z: 0}
-  cameraRotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  firstPersonCameraPositionOffset: {x: 0, y: 0, z: 0}
+  thirdPersonCameraPositionOffset: {x: 0, y: 20, z: -15}
+  firstPersonCameraRotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  firstPersonCamera: {fileID: 0}
+  thirdPersonCamera: {fileID: 0}
   guns:
   - {fileID: 2772909411704359930}
   takeDamagePanel: {fileID: 6170361725626686787, guid: 62cc0229117dc7941bff39043926b1d9,
@@ -429,6 +432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visuals: {fileID: 7105098690521029611}
   dieEffectPS: {fileID: 315779038403374838}
+  increaseHealthPanel: {fileID: 0}
+  takingDamagePanel: {fileID: 0}
   health: 20
   isDead: 0
   takeDamageSound: {fileID: 190489182}

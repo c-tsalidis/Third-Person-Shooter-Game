@@ -97,12 +97,12 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 }
                 StartCoroutine(ShotEffect());
                 // ray
-                if(lineOrigin == null)
+                if(lineOrigin == null || laserLine == null)
                 {
                     return;
                 }
                 lineOrigin = player.transform.position;
-                rayOrigin = player.transform.position;
+                rayOrigin = player.transform.position;                
                 laserLine.SetPosition(0, gunEnd.position);
                 if(Physics.Raycast(rayOrigin, player.transform.forward, out hit, weaponRange))
                 {

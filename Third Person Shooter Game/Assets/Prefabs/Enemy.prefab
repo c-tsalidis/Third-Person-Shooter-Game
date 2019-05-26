@@ -87,7 +87,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7dfb9640e939f1b40b0f5f075a1e179d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,7 +222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visuals: {fileID: 5584945215664719646}
-  dieEffectPS: {fileID: 3132826200647660035}
+  dieEffectPS: {fileID: 7095503858507218227, guid: 706a4da1b3888b8489f8f905f233266f,
+    type: 3}
+  increaseHealthPanel: {fileID: 0}
+  takingDamagePanel: {fileID: 0}
   health: 1
   isDead: 0
   takeDamageSound: {fileID: 0}
@@ -738,12 +741,6 @@ PrefabInstance:
 --- !u!4 &3132826200647660061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7095503858507218221, guid: 706a4da1b3888b8489f8f905f233266f,
-    type: 3}
-  m_PrefabInstance: {fileID: 5260842075810664240}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3132826200647660035 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7095503858507218227, guid: 706a4da1b3888b8489f8f905f233266f,
     type: 3}
   m_PrefabInstance: {fileID: 5260842075810664240}
   m_PrefabAsset: {fileID: 0}

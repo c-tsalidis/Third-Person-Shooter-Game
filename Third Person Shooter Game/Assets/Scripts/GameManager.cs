@@ -13,6 +13,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private Transform [] enemySpawnPoints;
         private Transform [] healthPowerUpsSpawnPoints;
 
+
         // variables in charge of handling time
 
         #endregion
@@ -29,16 +30,23 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private GameObject healthPowerUp;
         [SerializeField]
         private float levelUpTime;
+        [SerializeField]
+        private GameObject pausedMenuPanel;
 
         #endregion
 
         #region Public variables
 
+        public bool gamePaused;
         public GameObject enemySpawnPointsGameObject;
         public GameObject healthPowerUpsSpawnPointsGameObject;
         public int level = 1;
         public int enemyCounter = 0;
         public float auxTime = 0;
+
+        [Space]
+        public bool isFirstPerson = true;
+        public bool isThirdPerson = false;
         
 
         #endregion
@@ -48,6 +56,8 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         // Start is called before the first frame update
         void Start()
         {
+
+            pausedMenuPanel.SetActive(false);
 
             // increase the level over time
             // InvokeRepeating("LevelUp", levelUpTime, levelUpTime);
@@ -103,6 +113,37 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 level++;
             }
 
+            // checking if the player wants to pause the game
+            if(Input.GetButtonDown("Cancel"))
+            {
+                if(gamePaused == false)
+                {
+                    Time.timeScale = 0;
+                    gamePaused = true;
+                    pausedMenuPanel.SetActive(true);
+                }
+            }
+
+            // checking id the player is switching from first person to third person and viceversa
+            if (Input.GetMouseButtonDown(1))
+            {
+                if(isFirstPerson == true)
+                {
+                    isFirstPerson = false;
+                    isThirdPerson = true;
+                }
+                else if(isThirdPerson == true)
+                {
+                    isFirstPerson = true;
+                    isThirdPerson = false;
+                }
+                else
+                {
+                    // by default it's the first person
+                    isFirstPerson = true;
+                }
+            }
+
         }
 
 
@@ -138,6 +179,14 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             int spawnpointIndex = Random.Range(0, enemySpawnPoints.Length);
             // create an instance of the health power up at the random spawn point
             Instantiate(healthPowerUp, healthPowerUpsSpawnPoints[spawnpointIndex].position, healthPowerUpsSpawnPoints[spawnpointIndex].rotation);
+        }
+
+
+        public void ContinuePlaying()
+        {
+            pausedMenuPanel.SetActive(false);
+            Time.timeScale = 1;
+            gamePaused = false;
         }
 
 

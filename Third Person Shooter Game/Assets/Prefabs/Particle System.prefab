@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7095503858507218221}
   - component: {fileID: 7095503858507218227}
   - component: {fileID: 7095503858507218226}
+  - component: {fileID: 7184299486923737078}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -3554,7 +3555,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 0
     collisionMode: 0
@@ -4708,8 +4709,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 597b103d31e1521499cc79d560388a49, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7dfb9640e939f1b40b0f5f075a1e179d, type: 2}
+  - {fileID: 2100000, guid: 7dfb9640e939f1b40b0f5f075a1e179d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4752,3 +4753,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7184299486923737078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7095503858507218220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092bbfd002b835149b5a0e2d97b35512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

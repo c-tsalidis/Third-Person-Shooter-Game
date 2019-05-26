@@ -17,6 +17,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private bool isDead;
         private Camera camera;
         private GameObject equipedGun;
+        private GameManager gameManager;
 
 
         #endregion
@@ -37,9 +38,15 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         [SerializeField]
         private GameObject cameraTarget;
         [SerializeField]
-        private Vector3 cameraPositionOffset;
+        private Vector3 firstPersonCameraPositionOffset;
         [SerializeField]
-        private Quaternion cameraRotationOffset;
+        private Vector3 thirdPersonCameraPositionOffset = new Vector3(0, 20, -15);
+        [SerializeField]
+        private Quaternion firstPersonCameraRotationOffset;
+        [SerializeField]
+        private Camera firstPersonCamera;
+        [SerializeField]
+        private Camera thirdPersonCamera;
 
         [SerializeField]
         private GameObject [] guns;
@@ -47,6 +54,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         [Space]
         [SerializeField]
         private GameObject takeDamagePanel;
+
         
         #endregion
 
@@ -63,6 +71,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         // Start is called before the first frame update
         void Start()
         {
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             rb = this.gameObject.GetComponent<Rigidbody>();
             camera = Camera.main;
 
@@ -100,11 +109,13 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 PlayerPrefs.SetFloat("SurvivalMode_Player_HighScore", highScore);
             }
 
-
-            MovePlayer();
-            CameraFollow();
-            CheckGuns();
-            Shoot();
+            if(gameManager.gamePaused == false)
+            {
+                MovePlayer();
+                CameraFollow();
+                CheckGuns();
+                Shoot();
+            }
         }
 
         private void FixedUpdate()
@@ -119,23 +130,42 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         private void MovePlayer()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime;
-            float vertical = Input.GetAxisRaw("Vertical") * Time.fixedDeltaTime;
+            float horizontal = Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime * moveSpeed;
+            float vertical = Input.GetAxisRaw("Vertical") * Time.fixedDeltaTime * moveSpeed;
             isJumping = Input.GetKeyDown(KeyCode.Space);
             Vector3 moveInput = new Vector3(horizontal, 0, vertical);
-            float mouseInputXAxis = Input.GetAxis("Mouse X") * rotateSpeed * Time.fixedDeltaTime;
-            // float mouseInputYAxis = Input.GetAxis("Mouse Y") * rotateSpeed / 2 * Time.fixedDeltaTime;
-            // Vector3 rotationVector = new Vector3(-mouseInputYAxis, mouseInputXAxis, 0);
-            Vector3 rotationVector = new Vector3(0, mouseInputXAxis, 0);
-            /*
-            if(moveInput != new Vector3(0,0,0))
-            {
-                rotationVector = Vector3.Lerp(rotationVector, new Vector3(0, mouseInputXAxis, 0), Time.time);
-            }
-             */
 
-            gameObject.transform.Rotate(rotationVector);
-            gameObject.transform.Translate(horizontal * moveSpeed, 0, vertical * moveSpeed);
+            // if it's first person shooter
+            if(gameManager.isFirstPerson)
+            {
+                float mouseInputXAxis = Input.GetAxis("Mouse X") * rotateSpeed * Time.fixedDeltaTime;
+                // float mouseInputYAxis = Input.GetAxis("Mouse Y") * rotateSpeed / 2 * Time.fixedDeltaTime;
+                // Vector3 rotationVector = new Vector3(-mouseInputYAxis, mouseInputXAxis, 0);
+                Vector3 rotationVector = new Vector3(0, mouseInputXAxis, 0);
+                gameObject.transform.Rotate(rotationVector);
+                gameObject.transform.Translate(moveInput);
+            }
+            // if it's third person shooter
+            else if(gameManager.isThirdPerson)
+            {
+
+                Ray ray = thirdPersonCamera.ScreenPointToRay(Input.mousePosition);
+                Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+                float rayDistance;
+
+                if(groundPlane.Raycast(ray, out rayDistance))
+                {
+                    Vector3 point = ray.GetPoint(rayDistance);
+                    Debug.DrawLine(ray.origin, point, Color.red);
+                    Vector3 heightCorrectionLookPoint = new Vector3(point.x, transform.position.y, point.z);
+                    transform.LookAt(heightCorrectionLookPoint);
+                    // gun.transform.LookAt(heightCorrectionLookPoint);
+                }
+
+                // move with rigidbody, not with translate because translate will move and rotate relative to the player's rotation
+                rb.MovePosition(rb.position + moveInput ); 
+            }
+
 
             if(isJumping == true)
             {
@@ -157,8 +187,25 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
 
         private void CameraFollow()
         {
-            camera.transform.position = this.gameObject.transform.position + cameraPositionOffset;
-            camera.transform.rotation = this.gameObject.transform.rotation;
+            if(gameManager.isFirstPerson == true)
+            {
+                firstPersonCamera.enabled = true;
+                thirdPersonCamera.enabled = false;
+                camera.transform.position = this.gameObject.transform.position + firstPersonCameraPositionOffset;
+                camera.transform.rotation = this.gameObject.transform.rotation;
+            }
+            else if(gameManager.isThirdPerson == true)
+            {
+
+                firstPersonCamera.enabled = false;
+                thirdPersonCamera.enabled = true;
+                thirdPersonCamera.transform.position = this.gameObject.transform.position + thirdPersonCameraPositionOffset;
+            }
+            else
+            {
+                // if none of the cameras are enabled, then set the first person shooter as enabled by default
+                gameManager.isFirstPerson = true;
+            }
         }
 
 
@@ -191,8 +238,8 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
                 Debug.LogError("Player doesn't have the takeDamagePanel gameobject attached to it");
                 return;
             }
-            Vector3 uiPos = Camera.main.WorldToScreenPoint(hitPoint);
-            GameObject newTakeDamagePanel = Instantiate(takeDamagePanel, takeDamagePanel.transform.position, Quaternion.identity); 
+            // Vector3 uiPos = Camera.main.WorldToScreenPoint(hitPoint);
+            // GameObject newTakeDamagePanel = Instantiate(takeDamagePanel, takeDamagePanel.transform.position, Quaternion.identity); 
         }
 
         #endregion

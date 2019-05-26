@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Com.ctsalidis.ThirdPersonShooterGame
 {
@@ -9,6 +10,8 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         #region Private non-serializefield variables
 
         // private GameObject player;
+        private Color increaseHealthStartColor;
+        private Color takingDamageStartColor;
 
         #endregion
 
@@ -18,6 +21,10 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         private GameObject visuals;
         [SerializeField]
         private ParticleSystem dieEffectPS;
+        [SerializeField]
+        private GameObject increaseHealthPanel;
+        [SerializeField]
+        private GameObject takingDamagePanel;
 
         #endregion
 
@@ -39,6 +46,11 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             // player = GameObject.FindGameObjectWithTag("Player");
             // dieEffectPS = this.gameObject.GetComponent<ParticleSystem>();
             // audioSource[0] = GetComponents<AudioSource>();
+            if(this.gameObject.tag == "Player")
+            {
+                increaseHealthStartColor = increaseHealthPanel.GetComponent<Image>().color;
+                takingDamageStartColor = takingDamagePanel.GetComponent<Image>().color;
+            }
         }
 
         // Update is called once per frame
@@ -90,6 +102,9 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             health -= damage;
             this.gameObject.GetComponent<Player>().ShowTakingDamagePanel(hitPoint);
             takeDamageSound.Play();
+            takingDamagePanel.SetActive(true);
+            // takingDamagePanel.GetComponent<Image>().color = increaseHealthPanel.GetComponent<Image>().color;
+            takingDamagePanel.GetComponent<Image>().color = takingDamageStartColor;
         }
 
         // IEnumerator Die()
@@ -99,7 +114,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
             gameObject.GetComponent<Collider>().enabled = false;
             if(dieEffectPS != null)
             {
-                ParticleSystem newDieEffectPS = Instantiate(dieEffectPS, dieEffectPS.transform.position, Quaternion.identity) as ParticleSystem;
+                ParticleSystem newDieEffectPS = Instantiate(dieEffectPS, this.gameObject.transform.position, Quaternion.identity) as ParticleSystem;
                 newDieEffectPS.Play();
             }
             // yield return dieTime;
@@ -110,6 +125,9 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         public void IncreaseHealth(float addedHealth)
         {
             health += addedHealth;
+            increaseHealthPanel.SetActive(true);
+            // increaseHealthPanel.GetComponent<Image>().color = increaseHealthPanel.GetComponent<Image>().color;
+            increaseHealthPanel.GetComponent<Image>().color = increaseHealthStartColor;
         }
 
 
