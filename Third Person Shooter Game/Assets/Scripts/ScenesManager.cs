@@ -11,6 +11,7 @@ namespace Com.ctsalidis.ThirdPersonShooterGame
         public void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);
+            // SceneManager.GetSceneByBuildIndex(0);
         }
     }
 }
